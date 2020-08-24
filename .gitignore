@@ -1,2 +1,7 @@
 data/log/*.log
-data/db/*
+data/db/*.data
+data/db/*.wt
+data/db/*journal
+data/db/*.lock
+data/db/*Wire*
+data/db/*stora*
