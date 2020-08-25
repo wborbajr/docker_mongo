@@ -1,56 +1,79 @@
-![Docker](https://github.com/wborbajr/docker_mysql/blob/master/docker.jpeg)
+![Docker](https://github.com/wborbajr/docker_mongo/blob/master/docker.jpeg)
 
 ## Downloading
 
 ```bash
-git clone https://github.com/wborbajr/docker_mysql.git
-cd docker_mysql
+git clone https://github.com/wborbajr/docker_mongo.git
+cd docker_mongo
 ```
 
-## MariaDB
+## MongoDB
 
-Before bring container up, please change environment variables at **docker-compose.yaml**
+Before bring container up, please change environment settings at **.env**
 
 ```
-MYSQL_ROOT_PASSWORD: xxxxx
-MYSQL_USER: xxxx
-MYSQL_DATABASE: xxxx
-MYSQL_PASSWORD: xxxx
+MONGO_INITDB_ROOT_USERNAME=xxx
+MONGO_INITDB_ROOT_PASSWORD=xxx
+MONGO_INITDB_DATABASE=xxx
+MONGO_INITDB_USERNAME=xxx
+MONGO_INITDB_PASSWORD=xxx
 ```
 
 ## Database
 
-All databases will be saved locally at data folder.
+All databases will be saved locally at data folder **./data/db**
 
-Create two folders inside **docker_mysql**, to store **_development_** and **_production_** database locally.
-
-**_PS_** If you decided to change folders name or path, please, remember to modify the entry **volumes** at **docker-compose.yaml**
+**PS:** If you decided to change folders name or path, please, remember to modify the entry **volumes** at **docker-compose.yaml**
 
 ```
 volumes:
-    - ./data_prod:/var/lib/mysql:rw
-```
-
-```bash
-mkdir data_dev
-mkdir data_prod
+    - ./data/db:/data/db:rw
 ```
 
 ## Port
 
-MariaDB will expose port **60330** for development environment and **60331** for production environment.
+MariaDB will expose port **17027**, so remember to configure your MySQL Client to connect at **_Port: 17027_**.
+
 You can change it at **docker-compose.yaml** for your own propose.
 
 ## To execute
+
+### Just MongoDB
+
+```bash
+docker-compose up -d database
+```
+
+Or you can run using Makefile
+
+```bash
+make up-db
+```
+
+### Bringing up MariaDB and Adminer
 
 ```bash
 docker-compose up -d
 ```
 
-# To stop
+Or you can run using Makefile
+
+```bash
+make up-all
+```
+
+## To stop
+
+### Stopping Development environment
 
 ```bash
 docker-compose down
+```
+
+Or you can run using Makefile
+
+```bash
+make down
 ```
 
 ## Configuration
@@ -58,6 +81,8 @@ docker-compose down
 You can setup your own configurations just changing file **my.conf** located at config folder.
 
 After setup your own MariaDB configuration, don't forget to enable at **docker-compose.yaml** at **volumes** section to read your configuration file, removing comment tag.
+
+Alternatively you can setup an initial database to be created just modifying **init.sql** that it is at **initdb** folder and enabling at **docker-compose.yaml** at **volumes** section.
 
 ## Checking status
 

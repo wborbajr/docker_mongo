@@ -1,6 +1,13 @@
-.PHONY: up
-up:
-	docker-compose up -d mongo-dev
+.PHONY: up-all
+up-all:
+	docker-compose up -d 
+	sleep 10
+	# docker-compose up -d mongo-express
+	docker ps
+
+.PHONY: up-db
+up-db:
+	docker-compose up -d database
 	sleep 10
 	# docker-compose up -d mongo-express
 	docker ps
@@ -11,6 +18,5 @@ down:
 
 .PHONY: clean
 clean:
-	docker-compose --rmi all
 	@rm -rf ./data
 	echo "database data has been clean"
