@@ -18,7 +18,7 @@ services:
       - 17027:27017
     command: ['-f', '/etc/mongod.conf']
     volumes:
-      - ./conf/mongod.conf:/etc/mongod.conf
+      - ./config/mongod.conf:/etc/mongod.conf
       - ./scripts/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
       - ./data/db:/data/db:rw
       - ./data/log:/var/log/mongodb:rw

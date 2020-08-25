@@ -50,7 +50,7 @@ Or you can run using Makefile
 make up-db
 ```
 
-### Bringing up MariaDB and Adminer
+### Bringing up MongoDB and Mongo Client
 
 ```bash
 docker-compose up -d
@@ -78,11 +78,9 @@ make down
 
 ## Configuration
 
-You can setup your own configurations just changing file **my.conf** located at config folder.
+You can setup your own configurations just changing file **mongod.conf** located at config folder.
 
-After setup your own MariaDB configuration, don't forget to enable at **docker-compose.yaml** at **volumes** section to read your configuration file, removing comment tag.
-
-Alternatively you can setup an initial database to be created just modifying **init.sql** that it is at **initdb** folder and enabling at **docker-compose.yaml** at **volumes** section.
+After setup your own MongoDB configuration, don't forget to enable at **docker-compose.yaml** at **volumes** section to read your configuration file, removing comment tag.
 
 ## Checking status
 
